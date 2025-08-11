@@ -1,8 +1,0 @@
-<!DOCTYPE HTML>
-<HEAD>
-<TITLE>My Portfolio</TITLE>
-</HEAD>
-<BODY>
-<H3>This is my portfolio.</H3>
-</BODY>
-</HTML>
