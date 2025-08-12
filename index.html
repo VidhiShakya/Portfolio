@@ -1,21 +1,471 @@
-<!DOCTYPE HTML>
-<HEAD>
-    <TITLE>My Portfolio</TITLE>
-</HEAD>
-<body style="background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/07/Peaceful-Desktop-Backgrounds.jpeg'); color: white;">
-    <div style="display: flex; justify-content: right; align-items: center;background-color: #81d1c1;">
-    <ul style="list-style-type: none;">
-        <li>
-            <a href="#" style="padding: 20px;">Home</a>
-            <a href="#" style="padding: 20px;">About</a>
-            <a href="#" style="padding: 20px;">Projects</a>
-            <a href="#" style="padding: 20px;">Contact</a>
-        </li>
-    </ul>
-</div>
-<h4>This is my portfolio.</h4>
-<img src="https://gifdb.com/images/high/pusheen-cozy-dg3qz68mqgmlmy4e.gif" alt="Cute Cartoon Cat" >
-<p>Hii This is Vidhi Shakya.<br>I am an <b>Undergrad Computer Science Engineering Student</b> at <i>SRMCEM.</i></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidhi Shakya | Developer & Designer</title>
+    <!-- Use a modern, sans-serif font for a clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* New color palette with a vibrant orange accent from your image */
+        :root {
+            --background-base: #F8F9FA;    /* Very light off-white as base */
+            --section-bg-1: #FFFFFF;       /* Pure white for alternate sections */
+            --section-bg-2: #F0F2F5;       /* A soft, light gray for other sections */
+            --text-primary: #212529;       /* Dark charcoal for main text */
+            --text-secondary: #6c757d;     /* Muted gray for secondary text */
+            --accent-main: #F07F3C;        /* The specific orange from the provided image */
+            --accent-hover: #D56C34;       /* A darker shade of the orange on hover */
+            --border-color: #dee2e6;       /* Light border color */
+            --font-stack: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* Base Styles & Global Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--background-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        /* Layout and Utility Classes */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Section backgrounds now alternate with a smoother flow */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        #about-me, #projects, #contact {
+            background-color: var(--section-bg-2); /* A soft, light gray */
+        }
+
+        #skills, #certificates {
+            background-color: var(--section-bg-1); /* Pure white */
+        }
+
+        .section-heading {
+            font-size: 2.25rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-main);
+        }
+
+        /* Header & Navigation - UPDATED with glass effect */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* The "glass" effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari support */
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: top 0.3s ease;
+            width: 100%;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--accent-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            gap: 2rem;
+            padding: 8rem 1.5rem;
+            padding-top: 10rem; /* Add padding to account for fixed header */
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text .designation {
+            font-size: 1.25rem;
+            color: var(--accent-main);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text .tagline {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+        }
+        
+        .profile-pic {
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-main);
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* About Me Section */
+        #about-me .container {
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            background-color: var(--section-bg-1); /* Card background to stand out */
+            text-align: center;
+        }
+
+        #about-me p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            background-color: var(--background-base); /* Updated to contrast with section background */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--background-base);
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--section-bg-2);
+        }
+
+        /* Projects & Certificates Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--section-bg-1); /* Card background to stand out */
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p, .card .meta-info {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-card .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background-color: var(--section-bg-2);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-content a {
+            display: inline-block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid var(--border-color);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .contact-content a:hover,
+        .contact-content a:focus {
+            color: var(--accent-main);
+            border-color: var(--accent-main);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .social-icons a:hover,
+        .social-icons a:focus {
+            color: var(--accent-main);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--section-bg-1); /* Using a different color for the footer */
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem; /* Adjust padding for mobile */
+            }
+            .hero {
+                flex-direction: column-reverse; /* Stacks image on top of text on small screens */
+                text-align: center;
+                padding: 4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation - UPDATED -->
+    <header class="header">
+        <div class="container header-content">
+            <h1>Vidhi Shakya</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about-me">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certificates">Certificates</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="section hero container">
+            <div class="hero-text">
+                <h2>Hello, I'm Vidhi Shakya.</h2>
+                <div class="designation">B.Tech CSE Undergraduate (2028)</div>
+                <p class="tagline">An aspiring software developer passionate about crafting innovative and accessible digital solutions. Based in Lucknow, Uttar Pradesh, India.</p>
+            </div>
+            <!-- The placeholder image URL has been updated with the new color -->
+            <img src="WhatsApp Image 2025-08-12 at 22.09.37_1d300866.jpg" alt="Vidhi Shakya Profile Picture" class="profile-pic">
+        </section>
+        
+        <!-- About Me Section -->
+        <section id="about-me" class="section">
+            <div class="container">
+                <h2 class="section-heading">About Me</h2>
+                <p>I am a B.Tech CSE undergraduate student set to graduate in 2027, with a strong enthusiasm for software development. My journey is fueled by a curiosity to solve problems and a drive to create clean, efficient, and user-friendly applications. I believe in the power of continuous learning and hands-on experience to build a solid foundation for a career in technology.</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-heading">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Java</div>
+                    <div class="skill-item">C++</div>
+                    <div class="skill-item">HTML</div>
+                    <div class="skill-item">CSS</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">Git</div>
+                    <div class="skill-item">GitHub</div>
+                    <div class="skill-item">Firebase basics</div>
+                    <div class="skill-item">Problem Solving</div>
+                    <div class="skill-item">Web Fundamentals</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-heading">Projects</h2>
+                <div class="cards-grid">
+                    <div class="card project-card">
+                        <h3>Project One</h3>
+                        <p>A brief description of my first project, highlighting its purpose and a key feature.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="card project-card">
+                        <h3>Project Two</h3>
+                        <p>A full-stack application demonstrating my ability to handle both front-end and back-end development.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQLite</span>
+                        </div>
+                    </div>
+                    <div class="card project-card">
+                        <h3>Project Three</h3>
+                        <p>An elegant user interface design for a mobile app, focusing on modern UI/UX principles.</p>
+                        <div class="tech-tag">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="section">
+            <div class="container">
+                <h2 class="section-heading">Certificates</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>Git & GitHub Bootcamp</h3>
+                        <p>Issuing Organization: LetsUpgrade</p>
+                        <p class="meta-info">Date: Sep 2024</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container contact-content">
+                <h2 class="section-heading">Get In Touch</h2>
+                <p>I'm always open to new opportunities and collaborations. Feel free to connect with me!</p>
+                <a href="#">vidhi_be24cs246@gmail.com</a>
+                <div class="social-icons">
+                    <a href="#" aria-label="LinkedIn Profile">
+                        <!-- SVG for LinkedIn -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.761 0-.969.784-1.75 1.75-1.75s1.75.781 1.75 1.75c0 .971-.784 1.761-1.75 1.761zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="#" aria-label="GitHub Profile">
+                        <!-- SVG for GitHub -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.373 3.433 9.493 8.204 10.967.75.138 1.023-.326 1.023-.724 0-.361-.013-1.554-.022-3.04-.333.072-.68-.162-.871-.355-.183-.186-.421-.444-.645-.589-.183-.122-.39-.24-.593-.34-.339-.18-.75-.544-.01-.555.672-.01 1.25.263 1.543.791.685 1.18 1.838 1.053 2.569.805.066-.624.269-1.053.49-1.291-1.748-.198-3.593-.875-3.593-3.901 0-.86.309-1.564.814-2.11.082-.198-.352-1.002.077-2.102 0 0 .666-.212 2.18.802.628-.175 1.297-.263 1.964-.266.666.003 1.334.091 1.964.266 1.514-1.014 2.18-.802 2.18-.802.428 1.1.006 1.904.08 2.102.506.546.814 1.25.814 2.11 0 3.033-1.848 3.701-3.599 3.9c.27.235.509.684.509 1.372 0 .991-.009 1.797-.009 2.041 0 .399.268.868 1.029.724 4.772-1.474 8.202-5.594 8.202-10.967 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Personal Portfolio">
+                        <!-- SVG for a website/portfolio icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21 7h-2v-2h-2v-2h-2v-2h-2v-2h-2v-2h-2v2h-2v2h-2v2h-2v2h-2v11h2v-2h2v-2h2v-2h2v-2h2v-2h2v-2h2v-2zm-12 14h-4v-11h4v11zm6 0h-4v-11h4v11zm6 0h-4v-11h4v11z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Vidhi Shakya. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
